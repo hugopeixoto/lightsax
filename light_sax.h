@@ -19,21 +19,23 @@ class handler_t
 class parser_t
 {
   public:
-  parser_t(FILE * _fp, handler_t * _handler)
+  parser_t(handler_t * a_handler)
   {
-    handler = _handler;
-    fp = _fp;
-    offset = 0;
-    size = 0;
+    handler = a_handler;
   }
 
-  virtual bool parse()
+  bool parse (FILE* a_fp)
   {
     int nmemb = 0;
+
+    offset = 0;
+    size = 0;
+    buffer = new char[4 * (1 << 20)];
+
     do
     {
       memset(buffer + size, 0, (4096*256)*2);
-      nmemb = fread(buffer + size, 4096, 256, fp);
+      nmemb = fread(buffer + size, 4096, 256, a_fp);
 
       while (buffer[size])
         size++;
@@ -45,15 +47,30 @@ class parser_t
     }
     while (nmemb);
 
+    delete[] buffer;
+    return true;
+  }
+
+  bool parse (char* a_buffer)
+  {
+    return parse(a_buffer, strlen(a_buffer));
+  }
+
+  bool parse (char* a_buffer, size_t a_size)
+  {
+    offset = 0;
+    size = a_size;
+    buffer = a_buffer;
+
+    while (process_data());
+
     return true;
   }
 
   protected:
-  char buffer[4*(1 << 20)];
+  char*  buffer;
   size_t offset;
   size_t size;
-
-  FILE * fp;
   handler_t * handler;
 
   char * attributes[1024][2];

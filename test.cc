@@ -27,7 +27,7 @@ void printer_handler::start_element (char* a_name, char* a_attributes[][2])
 void printer_handler::end_element (char* a_name)
 {
   --depth_;
-  printf("%*sEnding tag: %s\n", depth_, "  ", a_name);
+  printf("%*sEnding tag: %s\n", 2*depth_, "  ", a_name);
 }
 
 void printer_handler::characters (char* a_characters, int start, int length)
@@ -39,9 +39,11 @@ void printer_handler::characters (char* a_characters, int start, int length)
  */
 int main ()
 {
+  char msg[] = "<pokemon>hello <img/></pokemon>";
   printer_handler handler;
-  light_sax::parser_t parser(stdin, &handler);
-  parser.parse();
+  light_sax::parser_t parser(&handler);
+  parser.parse(stdin);
+  parser.parse(msg);
   return 0;
 }
 
