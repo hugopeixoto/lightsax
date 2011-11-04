@@ -1,0 +1,4 @@
+# Light XML SAX Parser
+
+An attempt at a faster-than-rapidxml xml parser.
+
