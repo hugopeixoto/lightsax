@@ -2,3 +2,9 @@
 
 An attempt at a faster-than-rapidxml xml parser.
 
+## Running the test thing
+
+Just compile test.cc and feed him atom.xml through stdin:
+
+```make test
+./test < atom.xml```
