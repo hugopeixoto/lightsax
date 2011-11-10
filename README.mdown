@@ -7,3 +7,8 @@ An attempt at a faster-than-rapidxml xml parser.
 Just compile test.cc and feed him atom.xml through stdin:
 
 ```make test && ./test < atom.xml```
+
+## TODO
+
+* CDATA handling
+* xml entities handling
