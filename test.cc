@@ -1,7 +1,7 @@
 
-#include "light_sax.h"
+#include "lightsax.h"
 
-class printer_handler : public light_sax::handler_t
+class printer_handler : public lightsax::handler_t
 {
   public:
   printer_handler ();
@@ -41,7 +41,7 @@ int main ()
 {
   char msg[] = "<pokemon>hello <img/></pokemon>";
   printer_handler handler;
-  light_sax::parser_t parser(&handler);
+  lightsax::parser_t parser(&handler);
   parser.parse(stdin);
   parser.parse(msg);
   return 0;
