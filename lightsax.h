@@ -1,11 +1,11 @@
-#ifndef _LIGHT_SAX_H_
-#define _LIGHT_SAX_H_
+#ifndef _LIGHTSAX_H_
+#define _LIGHTSAX_H_
 
 #include <cstdio>
 #include <cstring>
 #include <cctype>
 
-namespace light_sax
+namespace lightsax
 {
 
 class handler_t
@@ -203,5 +203,5 @@ class parser_t
 
 }
 
-#endif // _LIGHT_SAX_H_
+#endif // _LIGHTSAX_H_
 
